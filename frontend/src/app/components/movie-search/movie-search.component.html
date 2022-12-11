@@ -1,0 +1,7 @@
+<input type="text" [(ngModel)]="searchInput" (input)="onSearchType()">
+
+<div class="filter-container">
+  <div class="genre-checkbox" *ngFor="let genre of allGenres">
+      <input type="checkbox" [value]="genre" (change)="toggleGenreFilter($event)">{{genre}}
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div routerLink="/movie/{{movie.id}}"  class="movie-card">
+  <p class="title">{{movie.title}}</p>
+  <img [src]="posterUrl" alt="">
+  <ul class="genre-list">
+    <li class="genre" *ngFor="let genre of movie.genres">{{genre}}</li>
+  </ul>
+</div>
