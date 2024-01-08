@@ -8,6 +8,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
     private long id;
     private String title;
