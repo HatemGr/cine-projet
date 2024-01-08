@@ -69,7 +69,6 @@ export class HomepageMoviesComponent implements OnInit {
   }
 
   filteredMovies(): Movie[] {
-
     if(this.filterGenres.length === 0) {
       return this.movies
     }

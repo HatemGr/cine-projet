@@ -25,10 +25,6 @@ export class MovieService {
     return this.http.get<Movie>(`${tmdbUrl}/3/movie/${movieId}?api_key=${environment.TMDB_API_KEY}&language=en-US`)
    }
 
-   getMovieDetails(movieId: number): Observable<Object> {
-    return this.http.get(`${tmdbUrl}/3/movie/${movieId}api_key=${environment.TMDB_API_KEY}&language=en-US&page=1`)
-   }
-
    fetchMovieGenres(): Observable<GenreDto>{
     return this.http.get<GenreDto>(`${tmdbUrl}/3/genre/movie/list?api_key=${environment.TMDB_API_KEY}&language=en-US`)
    }
