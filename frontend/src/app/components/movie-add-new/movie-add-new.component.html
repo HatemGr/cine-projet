@@ -1,0 +1,17 @@
+<form [formGroup]="movieFormGroup">
+  <label for="title">Titre du film: </label>
+  <input id="title" type="text" formControlName="title">
+
+  <label for="overview">Résumé: </label>
+  <textarea id="overview" type="text" formControlName="overview"></textarea>
+
+  <label for="genres">Genres: </label>
+  <div class="genres-checkboxes">
+    <div class="genre-checkbox" *ngFor="let genre of genres" >
+      <input class="genre" type="checkbox" [formControlName]="genre.name"> {{ genre.name }}
+    </div>
+  </div>
+
+  <button (click)="addMovie()"> ENREGISTRER</button>
+
+</form>
