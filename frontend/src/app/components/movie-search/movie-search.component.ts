@@ -1,14 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  Observable,
-  switchMap,
-  tap,
+  map
 } from 'rxjs';
-import { Genre, GenreDto, MovieDto } from 'src/app/models/movies.model';
+import { GenreDto } from 'src/app/models/movies.model';
 import { MovieService } from 'src/app/services/movie.service';
 import { SearchService } from 'src/app/services/search.service';
 

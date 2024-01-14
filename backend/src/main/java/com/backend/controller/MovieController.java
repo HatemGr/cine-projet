@@ -22,8 +22,8 @@ public class MovieController {
     }
 
     @GetMapping("/movies/popular")
-    public List<Movie> getPopularMovies() {
-        return movieService.getPopularMovies();
+    public List<Movie> getPopularMovies(@RequestParam(defaultValue = "1") Integer pageNumber) {
+        return movieService.getPopularMovies(pageNumber);
     }
 
     @GetMapping("/movies/{id}")
@@ -37,8 +37,8 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    public MovieDto getSearchedMovies(@RequestParam(required = false) String searchText) {
-        return movieService.getSearchedMovies(searchText);
+    public List<Movie> getSearchedMovies(@RequestParam(required = false) String searchText, @RequestParam(defaultValue = "1") Integer pageNumber) {
+        return movieService.getSearchedMovies(searchText,pageNumber);
     }
 
     @GetMapping("/my-movies")

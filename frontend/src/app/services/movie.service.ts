@@ -1,37 +1,48 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { tmdbUrl } from '../app.constant';
-import { GenreDto, Movie, MovieDto } from '../models/movies.model';
-
-
+import { BehaviorSubject, Observable } from 'rxjs';
+import { GenreDto, Movie } from '../models/movies.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MovieService {
+  private populardMovies = new BehaviorSubject<Movie[]>([]);
+  public populardMovies$ = this.populardMovies.asObservable();
 
-  // Injection de dependence
-  constructor(
-    private http: HttpClient
-   ) { }
+  private pageNumber = 1;
 
-   fetchPopularMovies(): Observable<MovieDto> {
-    return this.http.get<MovieDto>(`${tmdbUrl}/3/movie/popular?api_key=${environment.TMDB_API_KEY}&language=en-US&page=1`)
-   }
+  constructor(private http: HttpClient) {}
 
-   getMovie(movieId: number): Observable<Movie> {
-    return this.http.get<Movie>(`${tmdbUrl}/3/movie/${movieId}?api_key=${environment.TMDB_API_KEY}&language=en-US`)
-   }
+  getInitialPopularMovies() {
+    this.pageNumber = 1;
+    this.fetchPopularMovies().subscribe((movies) =>
+      this.populardMovies.next(movies)
+    );
+  }
 
-   fetchMovieGenres(): Observable<GenreDto>{
-    return this.http.get<GenreDto>(`${tmdbUrl}/3/genre/movie/list?api_key=${environment.TMDB_API_KEY}&language=en-US`)
-   }
+  getNextPagePopularMovies() {
+    this.pageNumber++;
+    this.fetchPopularMovies().subscribe((newMovies) => {
+      const currentMovies = this.populardMovies.getValue();
+      const updatedMovies = currentMovies.concat(newMovies);
+      this.populardMovies.next(updatedMovies);
+    });
+  }
 
-   searchMovies(searchText: string): Observable<MovieDto> {
-    return this.http.get<MovieDto>(`${tmdbUrl}/3/search/movie?api_key=${environment.TMDB_API_KEY}&language=en-US&query=${searchText}`)
-   }
+  fetchPopularMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(
+      `http://localhost:8080/cine-project/movies/popular?pageNumber=${this.pageNumber}`
+    );
+  }
 
+  getMovie(movieId: number): Observable<Movie> {
+    return this.http.get<Movie>(
+      `http://localhost:8080/cine-project/movies/${movieId}`
+    );
+  }
 
+  fetchMovieGenres(): Observable<GenreDto> {
+    return this.http.get<GenreDto>(`http://localhost:8080/cine-project/genres`);
+  }
 }

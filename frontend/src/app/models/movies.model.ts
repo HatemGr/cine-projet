@@ -6,7 +6,7 @@ export interface Movie {
   popularity: number;
   vote_average: number;
   vote_count: number;
-  genres: string[];
+  genres: Genre[];
   genre_ids: number[];
   poster_path: string
 }

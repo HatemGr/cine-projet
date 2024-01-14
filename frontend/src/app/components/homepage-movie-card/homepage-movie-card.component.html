@@ -2,6 +2,6 @@
   <p class="title">{{movie.title}}</p>
   <img [src]="posterUrl" alt="">
   <ul class="genre-list">
-    <li class="genre" *ngFor="let genre of movie.genres">{{genre}}</li>
+    <li class="genre" *ngFor="let genre of movie.genres">{{genre.name}}</li>
   </ul>
 </div>

@@ -1,6 +1,6 @@
 <app-movie-search></app-movie-search>
 <div class="movies-cards">
-    <a *ngFor="let movie of filteredMovies()" routerLink="/movie/{{movie.id}}">
+    <a *ngFor="let movie of displayedMovies" routerLink="/movie/{{movie.id}}">
       <app-homepage-movie-card [movie]="movie"></app-homepage-movie-card>
     </a>
 </div>
