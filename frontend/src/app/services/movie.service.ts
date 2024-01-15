@@ -45,4 +45,8 @@ export class MovieService {
   fetchMovieGenres(): Observable<GenreDto> {
     return this.http.get<GenreDto>(`http://localhost:8080/cine-project/genres`);
   }
+
+  addMovie(movie: Movie) {
+    return this.http.post<Movie>(`http://localhost:8080/cine-project`, movie);
+  }
 }

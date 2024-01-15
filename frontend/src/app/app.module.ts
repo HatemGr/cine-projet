@@ -9,6 +9,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { HomepageMoviesComponent } from './components/homepage-movies/homepage-movies.component';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MovieAddNewComponent } from './components/movie-add-new/movie-add-new.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomepageMovieCardComponent,
     MovieDetailComponent,
     MovieSearchComponent,
+    MovieAddNewComponent,
   ],
   imports: [
     BrowserModule,
